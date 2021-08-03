@@ -19,7 +19,7 @@ zlogres is a middleware for Fiber that logging about api took time since request
 ## Installation
 
 ```bash
-  go get -u -insecure ipanda.it.baac.or.th/golib/zlogres
+  GOINSECURE="ipanda.it.baac.or.th" go get -u ipanda.it.baac.or.th/golib/zlogres
 ```
 
 ## Signatures
@@ -88,4 +88,11 @@ var ConfigDefault = Config{
 ## Example Usage
 
 Please go to [example/main.go](./example/main.go)
+
+**Don't forget to run:**
+
+```bash
+  GOINSECURE="ipanda.it.baac.or.th" go mod tidy
+```
+
 Note: Custom usage please focus on `Custom` section

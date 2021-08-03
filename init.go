@@ -22,7 +22,7 @@ const ( // <-- this should be configurable
 	MethodTag             string = "method"
 	RequestTimeTag        string = "request_time"
 	ResponseStatusCodeTag string = "status_code"
-	TimeUsageTag          string = "took"
+	TimeUsageTag          string = "elapsed_time"
 
 	ContextRequestIDTag string = "transaction-id"
 	ContextMessageTag   string = "message"
@@ -52,7 +52,7 @@ func New(config ...Config) fiber.Handler {
 		// 'baby come back to me'
 		interceptedResponse := c.Response()
 		statusCode := interceptedResponse.StatusCode()
-		tookTime := time.Since(begin).Microseconds() // <-- this should be configurable
+		elapsedTime := time.Since(begin).Microseconds() // <-- this should be configurable
 
 		logger := log.Logger.Info() // <-- this should be configurable
 		logger = logger.
@@ -60,7 +60,7 @@ func New(config ...Config) fiber.Handler {
 			Str(MethodTag, c.Method()).
 			Int(ResponseStatusCodeTag, statusCode).
 			Str(RequestTimeTag, begin.Format(TimeFieldFormat)).
-			Int64(TimeUsageTag, tookTime)
+			Int64(TimeUsageTag, elapsedTime)
 
 		if reqID := c.Locals(cfg.RequestIDContextKey); reqID != nil {
 			logger = logger.Str(strings.ReplaceAll(cfg.RequestIDContextKey, "-", "_"), reqID.(string))
