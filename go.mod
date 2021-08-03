@@ -1,4 +1,4 @@
-module github.com/buildingwatsize/zlogres
+module ipanda.it.baac.or.th/golib/zlogres
 
 go 1.16
 
