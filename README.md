@@ -2,7 +2,7 @@
 
 [![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
 
-zlogres is a middleware for Fiber that logging about api took time since request to response.
+zlogres is a middleware for Fiber that logging about api elapsed time since request to response.
 
 ## Table of Contents
 
