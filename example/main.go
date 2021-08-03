@@ -17,8 +17,8 @@ func main() {
 	// [Custom] with requestid middleware
 	/*
 		app := fiber.New(fiber.Config{DisableStartupMessage: true})
-		app.Use(zlogres.New())
 		app.Use(requestid.New())
+		app.Use(zlogres.New())
 	*/
 
 	// [Custom] with requestid middleware but use "transaction-id" as context locals key

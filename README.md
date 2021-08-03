@@ -46,8 +46,8 @@ After you initiate your Fiber app, you can use the following possibilities:
 app.Use(zlogres.New())
 
 // this middleware supported the `requestid` middleware
-app.Use(zlogres.New())
 app.Use(requestid.New())
+app.Use(zlogres.New())
 
 // Or extend your config for customization
 app.Use(requestid.New(requestid.Config{
