@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/buildingwatsize/zlogres"
 	"github.com/gofiber/fiber/v2"
+	"ipanda.it.baac.or.th/golib/zlogres"
 )
 
 func main() {
