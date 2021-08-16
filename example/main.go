@@ -5,7 +5,7 @@ import (
 	"regexp"
 
 	"github.com/gofiber/fiber/v2"
-	"ipanda.it.baac.or.th/golib/zlogres"
+	"ipanda.baac.tech/golib/zlogres"
 )
 
 func main() {

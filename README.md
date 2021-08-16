@@ -8,6 +8,7 @@ zlogres is a middleware for Fiber that logging about api elapsed time since requ
 
 - [zlogres](#zlogres)
   - [Table of Contents](#table-of-contents)
+  - [Run this on first time only](#run-this-on-first-time-only)
   - [Installation](#installation)
   - [Signatures](#signatures)
   - [Examples](#examples)
@@ -16,10 +17,16 @@ zlogres is a middleware for Fiber that logging about api elapsed time since requ
   - [Dependencies](#dependencies)
   - [Example Usage](#example-usage)
 
+## Run this on first time only
+
+```bash
+  go env -w GOPRIVATE="ipanda.baac.tech"
+```
+
 ## Installation
 
 ```bash
-  GOINSECURE="ipanda.it.baac.or.th" GOPRIVATE="ipanda.it.baac.or.th" go get -u ipanda.it.baac.or.th/golib/zlogres
+  go get -u ipanda.baac.tech/golib/zlogres
 ```
 
 ## Signatures
@@ -35,7 +42,7 @@ Import the middleware package that is part of the Fiber web framework
 ```go
 import (
   "github.com/gofiber/fiber/v2"
-  "ipanda.it.baac.or.th/golib/zlogres"
+  "ipanda.baac.tech/golib/zlogres"
 )
 ```
 
@@ -92,7 +99,7 @@ Please go to [example/main.go](./example/main.go)
 **Don't forget to run:**
 
 ```bash
-  GOINSECURE="ipanda.it.baac.or.th" GOPRIVATE="ipanda.it.baac.or.th" go mod tidy
+  go mod tidy
 ```
 
 Note: Custom usage please focus on `Custom` section

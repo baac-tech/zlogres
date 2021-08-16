@@ -1,6 +1,10 @@
 # Changelog
 
-## v0.1.3
+## v0.1.4
+
+- [Edited] - New module and package name for ipanda
+
+- ## v0.1.3
 
 - [Edited] `README.md` for supporting local repository
 - [Edited] converted `took` into `elasped_time`
