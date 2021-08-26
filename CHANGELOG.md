@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.5
+
+- [Edited] New configurable of `LogLevel` (default: "info") and `ElapsedTimeUnit` (default: "micro")
+- [Edited] Fixed `TimeFieldFormat` is `time.RFC3339Nano`
+
 ## v0.1.4
 
 - [Edited] - New module and package name for ipanda

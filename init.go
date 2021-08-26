@@ -15,7 +15,7 @@ const ( // <-- this should be configurable
 	// TimeLevel  string = "microsecond"
 
 	// Note: This line below is not need to defined, bcoz time.RFC3339 is the default of zerolog
-	TimeFieldFormat    string = time.RFC3339
+	TimeFieldFormat    string = time.RFC3339Nano
 	TimestampFieldName string = "response_time"
 
 	URLTag                string = "url"
@@ -24,8 +24,7 @@ const ( // <-- this should be configurable
 	ResponseStatusCodeTag string = "status_code"
 	TimeUsageTag          string = "elapsed_time"
 
-	ContextRequestIDTag string = "transaction-id"
-	ContextMessageTag   string = "message"
+	ContextMessageTag string = "message"
 )
 
 func init() {
@@ -52,14 +51,14 @@ func New(config ...Config) fiber.Handler {
 		// 'baby come back to me'
 		interceptedResponse := c.Response()
 		statusCode := interceptedResponse.StatusCode()
-		elapsedTime := time.Since(begin).Microseconds() // <-- this should be configurable
+		elapsedTime := getTimeDuration(time.Since(begin), cfg.ElapsedTimeUnit)
 
-		logger := log.Logger.Info() // <-- this should be configurable
+		logger := getLogLevel(cfg.LogLevel)
 		logger = logger.
 			Str(URLTag, c.OriginalURL()).
 			Str(MethodTag, c.Method()).
 			Int(ResponseStatusCodeTag, statusCode).
-			Str(RequestTimeTag, begin.Format(TimeFieldFormat)).
+			Str(RequestTimeTag, begin.Format(TimeFieldFormat)). // <-- this should be configurable
 			Int64(TimeUsageTag, elapsedTime)
 
 		if reqID := c.Locals(cfg.RequestIDContextKey); reqID != nil {
@@ -74,5 +73,37 @@ func New(config ...Config) fiber.Handler {
 
 		// Idk to return the same response; if you have the better way, please tell me.
 		return c.Send(interceptedResponse.Body())
+	}
+}
+
+func getTimeDuration(timeDuration time.Duration, unit string) int64 {
+	switch unit {
+	case "nano":
+		return timeDuration.Nanoseconds()
+	case "micro":
+		return timeDuration.Microseconds()
+	case "milli":
+		return timeDuration.Milliseconds()
+	default:
+		return 0
+	}
+}
+
+func getLogLevel(level string) *zerolog.Event {
+	switch level {
+	case "debug":
+		return log.Logger.Debug()
+	case "info":
+		return log.Logger.Info()
+	case "warn":
+		return log.Logger.Warn()
+	case "error":
+		return log.Logger.Error()
+	case "fatal":
+		return log.Logger.Fatal()
+	case "panic":
+		return log.Logger.Panic()
+	default:
+		return log.Logger.Log()
 	}
 }
