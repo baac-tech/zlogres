@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.6
+
+- [Edited] Changed log template by encapsulated all thing into `EventTag` (key_name: "event")
+- [Edited] New configurable of `ContextMessageKey` (default: "message")
+- [Edited] Moved `response_time` into `ResponseTimeTag` 
+
 ## v0.1.5
 
 - [Edited] New configurable of `LogLevel` (default: "info") and `ElapsedTimeUnit` (default: "micro")

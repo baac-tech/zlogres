@@ -16,15 +16,18 @@ const ( // <-- this should be configurable
 
 	// Note: This line below is not need to defined, bcoz time.RFC3339 is the default of zerolog
 	TimeFieldFormat    string = time.RFC3339Nano
-	TimestampFieldName string = "response_time"
+	TimestampFieldName string = "timestamp"
 
+	EventTag              string = "event"
+	EventNameTag          string = "name"
 	URLTag                string = "url"
 	MethodTag             string = "method"
 	RequestTimeTag        string = "request_time"
+	ResponseTimeTag       string = "response_time"
 	ResponseStatusCodeTag string = "status_code"
 	TimeUsageTag          string = "elapsed_time"
 
-	ContextMessageTag string = "message"
+	EventNameValue string = "zlogres"
 )
 
 func init() {
@@ -55,17 +58,21 @@ func New(config ...Config) fiber.Handler {
 
 		logger := getLogLevel(cfg.LogLevel)
 		logger = logger.
-			Str(URLTag, c.OriginalURL()).
-			Str(MethodTag, c.Method()).
-			Int(ResponseStatusCodeTag, statusCode).
-			Str(RequestTimeTag, begin.Format(TimeFieldFormat)). // <-- this should be configurable
-			Int64(TimeUsageTag, elapsedTime)
+			Interface(EventTag, map[string]interface{}{
+				EventNameTag:          EventNameValue,
+				URLTag:                c.OriginalURL(),
+				MethodTag:             c.Method(),
+				ResponseStatusCodeTag: statusCode,
+				RequestTimeTag:        begin.Format(TimeFieldFormat),
+				ResponseTimeTag:       time.Now().Format(TimeFieldFormat),
+				TimeUsageTag:          elapsedTime,
+			})
 
 		if reqID := c.Locals(cfg.RequestIDContextKey); reqID != nil {
 			logger = logger.Str(strings.ReplaceAll(cfg.RequestIDContextKey, "-", "_"), reqID.(string))
 		}
 
-		msg := c.Locals(ContextMessageTag)
+		msg := c.Locals(cfg.ContextMessageKey)
 		if msg == nil {
 			msg = ""
 		}

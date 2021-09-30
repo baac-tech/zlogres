@@ -11,3 +11,6 @@ GET http://localhost:8000/msg/mynameiswat
 
 ### With Context (empty msg, will be not showing in logs)
 GET http://localhost:8000/msg
+
+### CUSTOM
+GET http://localhost:8001/msg_custom

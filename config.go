@@ -14,8 +14,11 @@ type Config struct {
 	// Optional. Default: "info"
 	LogLevel string
 
-	// Optiona. Default: "micro". Possible Value: ["nano", "micro", "milli"]
+	// Optional. Default: "micro". Possible Value: ["nano", "micro", "milli"]
 	ElapsedTimeUnit string
+
+	// Optional. Default: "message". Use ContextMessageKey by set `c.Locals("message", "WHATEVER_MESSAGE")`
+	ContextMessageKey string
 }
 
 var ConfigDefault = Config{
@@ -23,6 +26,7 @@ var ConfigDefault = Config{
 	RequestIDContextKey: "requestid",
 	LogLevel:            "info",
 	ElapsedTimeUnit:     "micro",
+	ContextMessageKey:   "message",
 }
 
 func configDefault(config ...Config) Config {
@@ -45,6 +49,10 @@ func configDefault(config ...Config) Config {
 
 	if cfg.ElapsedTimeUnit == "" {
 		cfg.ElapsedTimeUnit = ConfigDefault.ElapsedTimeUnit
+	}
+
+	if cfg.ContextMessageKey == "" {
+		cfg.ContextMessageKey = ConfigDefault.ContextMessageKey
 	}
 
 	return cfg
