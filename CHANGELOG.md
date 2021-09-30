@@ -1,10 +1,15 @@
 # Changelog
 
+## v0.1.7
+
+- [Added] `ResponseStatusTextTag` in log message, for showing http status message (key_name: "status_text")
+- [Added] `TimeUsageUnitTag` in log message, for showing time unit usage (key_name: "elapsed_time_unit")
+
 ## v0.1.6
 
 - [Edited] Changed log template by encapsulated all thing into `EventTag` (key_name: "event")
 - [Edited] New configurable of `ContextMessageKey` (default: "message")
-- [Edited] Moved `response_time` into `ResponseTimeTag` 
+- [Edited] Moved `response_time` into `ResponseTimeTag`
 
 ## v0.1.5
 

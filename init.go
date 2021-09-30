@@ -6,6 +6,7 @@ import (
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"github.com/valyala/fasthttp"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -25,7 +26,9 @@ const ( // <-- this should be configurable
 	RequestTimeTag        string = "request_time"
 	ResponseTimeTag       string = "response_time"
 	ResponseStatusCodeTag string = "status_code"
+	ResponseStatusTextTag string = "status_text"
 	TimeUsageTag          string = "elapsed_time"
+	TimeUsageUnitTag      string = "elapsed_time_unit"
 
 	EventNameValue string = "zlogres"
 )
@@ -63,9 +66,11 @@ func New(config ...Config) fiber.Handler {
 				URLTag:                c.OriginalURL(),
 				MethodTag:             c.Method(),
 				ResponseStatusCodeTag: statusCode,
+				ResponseStatusTextTag: fasthttp.StatusMessage(statusCode),
 				RequestTimeTag:        begin.Format(TimeFieldFormat),
 				ResponseTimeTag:       time.Now().Format(TimeFieldFormat),
 				TimeUsageTag:          elapsedTime,
+				TimeUsageUnitTag:      cfg.ElapsedTimeUnit,
 			})
 
 		if reqID := c.Locals(cfg.RequestIDContextKey); reqID != nil {
