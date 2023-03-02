@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.0
+
+- [Edited] Updated dependencies
+- [Edited] Renamed module name for github public repo
+
 ## v0.1.7
 
 - [Added] `ResponseStatusTextTag` in log message, for showing http status message (key_name: "status_text")
