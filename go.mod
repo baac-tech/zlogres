@@ -1,4 +1,4 @@
-module ipanda.baac.tech/golib/zlogres
+module github.com/baac-tech/zlogres
 
 go 1.16
 

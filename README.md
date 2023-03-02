@@ -17,16 +17,10 @@ zlogres is a middleware for Fiber that logging about api elapsed time since requ
   - [Dependencies](#dependencies)
   - [Example Usage](#example-usage)
 
-## Run this on first time only
-
-```bash
-  go env -w GOPRIVATE="ipanda.baac.tech"
-```
-
 ## Installation
 
 ```bash
-  go get -u ipanda.baac.tech/golib/zlogres
+  go get -u github.com/baac-tech/zlogres
 ```
 
 ## Signatures
@@ -42,7 +36,7 @@ Import the middleware package that is part of the Fiber web framework
 ```go
 import (
   "github.com/gofiber/fiber/v2"
-  "ipanda.baac.tech/golib/zlogres"
+  "github.com/baac-tech/zlogres"
 )
 ```
 

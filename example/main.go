@@ -6,7 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
-	"ipanda.baac.tech/golib/zlogres"
+	"github.com/baac-tech/zlogres"
 )
 
 var (
