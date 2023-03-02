@@ -1,4 +1,4 @@
-module zlogres
+module github.com/baac-tech/zlogres
 
 go 1.16
 
