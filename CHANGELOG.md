@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.3
+
+- [Edited] Updated dependencies
+- [Edited] Updated module version
+
 ## v0.2.2
 
 - [Edited] Updated dependencies
